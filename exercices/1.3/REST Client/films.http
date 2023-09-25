@@ -1,0 +1,11 @@
+### Create a film
+@baseUrl = http://localhost:3000
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "À la recherche du bonheur",
+    "duration": 117,
+    "budget": 55,
+    "link": "https://www.allocine.fr/film/fichefilm_gen_cfilm=54098.html"
+}
