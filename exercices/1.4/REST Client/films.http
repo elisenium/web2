@@ -1,0 +1,78 @@
+### Read all films
+@baseUrl = http://localhost:3000
+GET {{baseUrl}}/films
+
+### Read all films with a minimum duration of 110 minutes
+GET {{baseUrl}}/films?minimum-duration=110
+
+### Create a film
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "À la recherche du bonheur",
+    "duration": 117,
+    "budget": 55,
+    "link": "https://www.allocine.fr/film/fichefilm_gen_cfilm=54098.html"
+}
+
+### Create a film with missing title
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "",
+    "duration": 117,
+    "budget": 55,
+    "link": "https://www.allocine.fr/film/fichefilm_gen_cfilm=54098.html"
+}
+
+### Create a film with missing duration
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "À la recherche du bonheur",
+    "duration": ,
+    "budget": 55,
+    "link": "https://www.allocine.fr/film/fichefilm_gen_cfilm=54098.html"
+}
+
+### Create a film with missing budget
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "À la recherche du bonheur",
+    "duration": 117,
+    "budget": ,
+    "link": "https://www.allocine.fr/film/fichefilm_gen_cfilm=54098.html"
+}
+
+### Create a film with missing link (empty string)
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "À la recherche du bonheur",
+    "duration": 117,
+    "budget": 55,
+    "link": ""
+}
+
+### Create another film
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "Here Today",
+    "duration": 117,
+    "budget": 3,
+    "link": "https://www.allocine.fr/film/fichefilm_gen_cfilm=277040.html"
+}
+
+### Read film with id == 3
+GET {{baseUrl}}/films/3
+
+### Read film with id that doesn't exist
+GET {{baseUrl}}/films/-500

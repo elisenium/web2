@@ -26,7 +26,7 @@ const FILMS = [
 
 ];
 
-/* GET users listing. */
+/* GET list of films */
 router.get('/', function (req, res, next) {
     console.log("GET /films")
     res.json(FILMS);
