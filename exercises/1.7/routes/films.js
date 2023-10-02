@@ -89,8 +89,10 @@ router.post('/', function (req, res, next) {
         link: link
     };
 
-    serialize(jsonDbPath, films)
-    res.json(newFilm);
+    FILMS.push(newFilm);
+
+    serialize(jsonDbPath, films);
+    return res.json(newFilm);
 });
 
 router.delete('/:id', (req, res, next) => {
