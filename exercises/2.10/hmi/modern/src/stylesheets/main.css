@@ -1,0 +1,13 @@
+.container {
+    width: 50%;
+    height: auto;
+}
+
+/* Large devices (desktops, 992px and up) */
+
+.responsive-background-color {
+    background-color: pink;
+    @media (min-width: 992px) {
+      background-color: white;
+    }
+  }
