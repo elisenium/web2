@@ -10,30 +10,6 @@ const {
 
 const router = express.Router();
 
-/* const FILMS = [
-    {
-        id: 1,
-        title: 'Palmer',
-        duration: 110,
-        budget: 6.7,
-        link:'https://m.imdb.com/title/tt6857376',
-    },
-    {
-        id: 2,
-        title: 'Divines',
-        duration: 105,
-        budget: 2.4,
-        link: 'https://m.imdb.com/title/tt4730986',
-    },
-    {
-        id: 3,
-        title: 'Kidnap',
-        duration: 95,
-        budget: 21,
-        link: 'https://m.imdb.com/title/tt1458169/',
-    },
-
-]; */
 
 /* GET list of films */
 // GET /films?minimum-duration=value
@@ -58,17 +34,19 @@ router.get('/:id', (req, res) => {
 
 /* POST add new film */
 router.post('/', (req, res) => {
-    
-    const title = req?.body?.title?.length !== 0 ? req.body.title : undefined;
-    const duration = req?.body?.duration?.length !== 0 ? req.body.duration : undefined;
-    const budget = req?.body?.budget?.length !== 0 ? req.body.budget : undefined;
-    const link = req?.body?.link?.length !== 0 ? req.body.link : undefined;
 
+    const title = req?.body?.title?.length !== 0 ? req.body.title : undefined;
+    const duration =
+        typeof req?.body?.duration !== 'number' || req.body.duration < 0
+            ? undefined
+            : req.body.duration;
+    const budget =
+        typeof req?.body?.budget !== 'number' || req.body.budget < 0 ? undefined : req.body.budget;
+    const link = req?.body?.link?.length !== 0 ? req.body.link : undefined;
 
     if (!title || !duration || !budget || !link) return res.sendStatus(400); // error code '400 Bad request'
 
-
-    const newFilm = createOneFilm(title, parseInt(duration,10), parseInt(budget,10), link);
+    const newFilm = createOneFilm(title, link, duration, budget);
     return res.json(newFilm);
 });
 
@@ -103,7 +81,7 @@ router.patch('/:id', (req, res) => {
     return res.json(updatedFilm);
 });
 
-router.put('/:id', (req, res) => {     
+router.put('/:id', (req, res) => {
     const title = req?.body?.title;
     const duration = req?.body?.duration;
     const budget = req?.body?.budget;

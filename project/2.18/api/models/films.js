@@ -18,7 +18,7 @@ function readAllFilms(minimumDuration) {
 function readOneFilm(id) {
     const idAsNumber = Number(id);
     const films = parse(jsonDbPath);
-    const indexOfFilmFound = films.findIndex((pizza) => pizza.id === idAsNumber);
+    const indexOfFilmFound = films.findIndex((film) => film.id === idAsNumber);
     if (indexOfFilmFound < 0) return undefined;
 
     return films[indexOfFilmFound];
@@ -27,7 +27,7 @@ function readOneFilm(id) {
 function createOneFilm(title, link, duration, budget) {
     const films = parse(jsonDbPath);
 
-    const createdPizza = {
+    const createdFilm = {
         id: getNextId(),
         title,
         link,
@@ -35,11 +35,11 @@ function createOneFilm(title, link, duration, budget) {
         budget,
     };
 
-    films.push(createdPizza);
+    films.push(createdFilm);
 
     serialize(jsonDbPath, films);
 
-    return createdPizza;
+    return createdFilm;
 }
 
 function getNextId() {
@@ -66,16 +66,16 @@ function deleteOneFilm(id) {
 function updatePartiallyOneFilm(id, propertiesToUpdate) {
     const idAsNumber = Number(id);
     const films = parse(jsonDbPath);
-    const foundIndex = films.findIndex((pizza) => pizza.id === idAsNumber);
+    const foundIndex = films.findIndex((film) => film.id === idAsNumber);
     if (foundIndex < 0) return undefined;
 
-    const updatedPizza = { ...films[foundIndex], ...propertiesToUpdate };
+    const updatedFilm = { ...films[foundIndex], ...propertiesToUpdate };
 
-    films[foundIndex] = updatedPizza;
+    films[foundIndex] = updatedFilm;
 
     serialize(jsonDbPath, films);
 
-    return updatedPizza;
+    return updatedFilm;
 }
 
 function updateFullyOneFilmOrCreateOneFilm(id, filmProps) {
