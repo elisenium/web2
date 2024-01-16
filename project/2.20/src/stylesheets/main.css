@@ -1,0 +1,59 @@
+/* Large devices (desktops, 992px and up) */
+
+.responsive-background-color {
+    background-color: lightblue;
+    @media (min-width: 992px) {
+      background-color: white;
+    }
+}
+
+.custom-loader {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 8px solid;
+  border-color: #E4E4ED;
+  border-right-color: #F47DC8;
+  margin: auto;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  height: 70vh; 
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Dark Theme */
+body.dark-mode {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+body.dark-mode .modal{
+  color:black;
+}
+
+header.dark-mode{
+  background-color: #222;
+  color: black;
+}
+
+/* button within a body that has the class dark-mode */ 
+body button {
+  background-color: black;
+  color: white;
+}
+
+body.dark-mode button {
+  background-color: white;
+  color: black;
+}
