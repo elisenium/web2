@@ -74,6 +74,7 @@ const AddMoviePage = () => {
 
     await addOneMovie(movieToBeCreated);
     Navigate('/movies');
+
   });
 };
 

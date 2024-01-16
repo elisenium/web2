@@ -1,4 +1,4 @@
-import { readAllMovies, deleteOneMovie } from '../../models/movies';
+import { readAllMovies, deleteOneMovie, updateOneMovie } from '../../models/movies';
 
 const ViewMoviePage = async () => {
   const main = document.querySelector('main');
@@ -44,7 +44,11 @@ function getHtmlMovieTableAsString(movies) {
       <td>
         <button type="button" class="btn btn-info delete" data-element-id="${element.id}">Delete</button>
       </td>
+      <td>
+      <button type="button" class="btn btn-info update" data-element-id="${element.id}">Save</button>
+    </td>
     </tr>
+    
     `,
     )
     .join('')}
@@ -60,6 +64,22 @@ function attachEventListeners() {
     button.addEventListener('click', async (e) => {
       const { elementId } = e.target.dataset;
       await deleteOneMovie(elementId);
+      ViewMoviePage();
+    });
+  });
+
+  movieWrapper.querySelectorAll('.update').forEach((button) => {
+    button.addEventListener('click', async (e) => {
+      const { elementId } = e.target.dataset;
+
+      const filmRow = e.target.parentElement.parentElement;
+      const newFilmData = {
+        title: filmRow.children[0].innerText,
+        link: filmRow.children[1].innerText, // it's is a link that we change, not directly the td
+        duration: Number.parseInt(filmRow.children[2].innerHTML, 10),
+        budget: Number.parseInt(filmRow.children[3].innerHTML, 10),
+      };
+      await updateOneMovie(elementId, newFilmData);
       ViewMoviePage();
     });
   });
