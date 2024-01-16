@@ -1,4 +1,4 @@
-import readAllMovies from '../../models/movies';
+import { readAllMovies } from '../../models/movies';
 
 const ViewMoviePage = async () => {
   const main = document.querySelector('main');

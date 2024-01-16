@@ -34,6 +34,9 @@ const Navbar = () => {
                 <a class="nav-link" aria-current="page" href="/movies" data-uri="/movies">Films</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/addmovie" data-uri="/addmovie">Add Film</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/about" data-uri="/about">About</a>
               </li>                        
             </ul>

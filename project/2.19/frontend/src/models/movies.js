@@ -10,4 +10,25 @@ const readAllMovies = async () => {
     }
 };
 
-export default readAllMovies;
+const addOneMovie = async (movie) => {
+    try {
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(movie),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        const response = await fetch('/api/films', options);
+
+        const createdFilm = await response.json();
+
+        return createdFilm;
+    } catch (err) {
+        console.error('addOneMovie::error: ', err);
+        throw err;
+    }
+};
+
+export { readAllMovies, addOneMovie } ;
