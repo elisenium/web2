@@ -31,4 +31,21 @@ const addOneMovie = async (movie) => {
     }
 };
 
-export { readAllMovies, addOneMovie } ;
+const deleteOneMovie = async (id) => {
+    try {
+        const options = {
+            method: 'DELETE',
+        };
+
+        const response = await fetch(`/api/films/${id}`, options);
+
+        const deletedFilm = await response.json();
+
+        return deletedFilm;
+    } catch (err) {
+        console.error('deleteOneMovie::error: ', err);
+        throw err;
+    }
+};
+
+export { readAllMovies, addOneMovie, deleteOneMovie } ;

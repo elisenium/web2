@@ -1,4 +1,4 @@
-import { readAllMovies } from '../../models/movies';
+import { readAllMovies, deleteOneMovie } from '../../models/movies';
 
 const ViewMoviePage = async () => {
   const main = document.querySelector('main');
@@ -11,6 +11,7 @@ const ViewMoviePage = async () => {
 
   movieWrapper.innerHTML = moviesAsHtmlTable;
 
+  attachEventListeners();
 };
 
 function getHtmlMovieTableAsString(movies) {
@@ -25,7 +26,8 @@ function getHtmlMovieTableAsString(movies) {
     <th scope="col">Title</th>
     <th scope="col">Link</th>
     <th scope="col">Duration (min)</th>
-    <th scope="col">Budget (million)</th>  
+    <th scope="col">Budget (million)</th>
+    <th scope="col">Opérations</th>
   </tr>
 </thead>
 <tbody>  
@@ -39,7 +41,9 @@ function getHtmlMovieTableAsString(movies) {
       </td>
       <td class="text-info" contenteditable="true">${element.duration}</td>
       <td class="text-info" contenteditable="true">${element.budget}</td>
-     
+      <td>
+        <button type="button" class="btn btn-info delete" data-element-id="${element.id}">Delete</button>
+      </td>
     </tr>
     `,
     )
@@ -49,5 +53,16 @@ function getHtmlMovieTableAsString(movies) {
   return htmlMovieTable;
 }
 
+function attachEventListeners() {
+  const movieWrapper = document.querySelector('#movieWrapper');
+
+  movieWrapper.querySelectorAll('.delete').forEach((button) => {
+    button.addEventListener('click', async (e) => {
+      const { elementId } = e.target.dataset;
+      await deleteOneMovie(elementId);
+      ViewMoviePage();
+    });
+  });
+}
 
 export default ViewMoviePage;
