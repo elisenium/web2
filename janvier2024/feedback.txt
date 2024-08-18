@@ -1,0 +1,14 @@
+Note de l’examen de JS : 12/20
+ 
+Note de la question 1 de JS : 9/13
+Commentaires de la question 1 :
+- Les images par défaut ne sont pas correctement affichées
+- L'interval n'est pas correctement retiré au changement de page et à la fin de la liste
+ 
+Note de la question 2 de JS:  3/7
+Commentaires de la question 2 :
+- Aucun requête http, on ne peut donc pas considérer l'API fonctionnelle
+- POST /quotes/evaluation/:id devrait plutôt être POST /quotes/:id/evaluations.
+- jsonDbPath: .../films.json ??? puis quotes sur base d'un chemin relatif directement vers quotes.json (qui sera non trouvable)
+- Code pas nettoyé (pizzas...)
+- Code intéressant pour ajouter les évaluations au quotes.
